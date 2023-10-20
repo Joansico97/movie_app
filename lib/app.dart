@@ -15,7 +15,7 @@ class MovieAppEvertec extends ConsumerWidget {
       title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.white,
+        scaffoldBackgroundColor: const Color(0xFF201E1C),
         fontFamily: 'Poppins',
         useMaterial3: true,
         primaryColor: AppColors.primary,
