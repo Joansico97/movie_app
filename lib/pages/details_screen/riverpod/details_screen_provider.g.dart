@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_screen_provider.dart';
+part of 'details_screen_provider.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$HomeScreenModelImpl _$$HomeScreenModelImplFromJson(
+_$DetailScreenModelImpl _$$DetailScreenModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$HomeScreenModelImpl(
+    _$DetailScreenModelImpl(
       title: json['title'] as String,
     );
 
-Map<String, dynamic> _$$HomeScreenModelImplToJson(
-        _$HomeScreenModelImpl instance) =>
+Map<String, dynamic> _$$DetailScreenModelImplToJson(
+        _$DetailScreenModelImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
     };

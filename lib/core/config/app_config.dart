@@ -1,8 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:movie_app/core/constants/constants.dart';
 
 Future<void> initConfig() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await _openBoxesLocalStorage();
 }
 
 Locale? localeCallback(locale, supportedLocales) {
@@ -20,4 +24,8 @@ class AppScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
       };
+}
+
+Future<void> _openBoxesLocalStorage() async {
+  await Hive.openBox(LocalStorageConstants.sessionBox);
 }
