@@ -13,6 +13,9 @@ _$HomeScreenModelImpl _$$HomeScreenModelImplFromJson(
       movies: (json['movies'] as List<dynamic>)
           .map((e) => Movie.fromJson(e as Map<String, dynamic>))
           .toList(),
+      listSearch: (json['listSearch'] as List<dynamic>)
+          .map((e) => Movie.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$HomeScreenModelImplToJson(
@@ -20,4 +23,5 @@ Map<String, dynamic> _$$HomeScreenModelImplToJson(
     <String, dynamic>{
       'index': instance.index,
       'movies': instance.movies,
+      'listSearch': instance.listSearch,
     };

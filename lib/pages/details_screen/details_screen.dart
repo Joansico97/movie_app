@@ -25,7 +25,13 @@ class DetailsScreen extends ConsumerWidget {
             SizedBox(
               height: size.height(context, .5),
               width: size.fullWidth(context),
-              child: Image.network(notifier.buildImage(path: movie.posterPath), fit: BoxFit.cover),
+              child: Hero(
+                tag: movie.id,
+                child: Image.network(
+                  notifier.buildImage(path: movie.posterPath),
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
             ),
             Container(
               decoration: BoxDecoration(
@@ -42,19 +48,32 @@ class DetailsScreen extends ConsumerWidget {
             Column(
               children: [
                 const CustomAppBar(isHome: false),
-                SizedBox(height: size.height(context, .3)),
-                Text(
-                  movie.title,
-                  style: AppStyles.heading1,
-                ),
-                SizedBox(height: size.height(context, .1)),
-                SizedBox(
-                  width: size.width(context, .9),
-                  child: Text(
-                    movie.overview,
-                    textAlign: TextAlign.center,
-                    style: AppStyles.body1,
-                  ),
+                SizedBox(height: size.height(context, .35)),
+                Column(
+                  children: [
+                    Padding(
+                      padding: size.horizontal(context, .05),
+                      child: SizedBox(
+                        width: size.fullWidth(context),
+                        child: Text(
+                          movie.title,
+                          textAlign: TextAlign.left,
+                          style: AppStyles.heading1.copyWith(
+                            fontSize: size.width(context, .1),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: size.height(context, .02)),
+                    SizedBox(
+                      width: size.width(context, .9),
+                      child: Text(
+                        movie.overview,
+                        textAlign: TextAlign.justify,
+                        style: AppStyles.body1,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

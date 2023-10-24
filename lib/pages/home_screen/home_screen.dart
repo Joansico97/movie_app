@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/data/models/remote/response/movie.dart';
+import 'package:movie_app/data/providers/locale_provider.dart';
+import 'package:movie_app/gen/l10n.dart';
 import 'package:movie_app/pages/home_screen/riverpod/home_screen_provider.dart';
 import 'package:movie_app/pages/home_screen/widgets/widgets.dart';
 import 'package:movie_app/widgets/widgets.dart';
 import 'package:movie_app/core/utils/utils.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -24,10 +27,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(homeScreenProvider);
     final notifier = ref.watch(homeScreenProvider.notifier);
+    final locale = ref.watch(localeProvider);
+    final localeNotifier = ref.watch(localeProvider.notifier);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => notifier.getMovies(),
-        child: const Icon(Icons.refresh),
+        onPressed: () =>
+            localeNotifier.changeLocale(locale == const Locale('en') ? const Locale('es') : const Locale('en')),
+        child: Icon(
+          PhosphorIcons.regular.globe,
+        ),
       ),
       body: Container(
         height: size.fullHeight(context),
@@ -42,15 +50,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               alignment: Alignment.centerLeft,
               child: InkWell(
                 onTap: () => notifier.getMovies(),
-                child: const Text(
-                  'Popular Movies',
+                child: Text(
+                  L10n.of(context).heading,
                   style: AppStyles.heading2,
                 ),
               ),
             ),
             SizedBox(height: size.height(context, .01)),
             MovieSlider(
-              count: state.movies.length,
               movie: state.movies,
             ),
           ],
@@ -60,49 +67,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 }
 
-// class MovieSlider extends ConsumerStatefulWidget {
-// const MovieSlider({
-//   super.key,
-//   required this.movie,
-//   required this.count,
-// });
-
-// final List<Movie> movie;
-// final int count;
-
-//   @override
-//   ConsumerState<MovieSlider> createState() => _MovieSliderState();
-// }
-
-// class _MovieSliderState extends State<MovieSlider> {
-
-//   final ScrollController _scrollController = ScrollController();
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _scrollController.addListener(() {
-//       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-//         ref.read(homeScreenProvider.notifier).getMovies();
-//       }
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-
-//   }
-// }
-
 class MovieSlider extends ConsumerStatefulWidget {
   const MovieSlider({
     super.key,
     required this.movie,
-    required this.count,
   });
 
   final List<Movie> movie;
-  final int count;
 
   @override
   ConsumerState<MovieSlider> createState() => _MovieSliderState();
@@ -129,7 +100,7 @@ class _MovieSliderState extends ConsumerState<MovieSlider> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         controller: _scrollController,
-        itemCount: widget.count,
+        itemCount: widget.movie.length,
         itemBuilder: (context, index) {
           return MovieCard(
             movie: widget.movie[index],

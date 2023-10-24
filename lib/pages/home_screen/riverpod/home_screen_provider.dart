@@ -13,6 +13,7 @@ class HomeScreenModel with _$HomeScreenModel {
   const factory HomeScreenModel({
     required int index,
     required List<Movie> movies,
+    required List<Movie> listSearch,
   }) = _HomeScreenModel;
 
   factory HomeScreenModel.fromJson(Map<String, dynamic> json) => _$HomeScreenModelFromJson(json);
@@ -24,6 +25,7 @@ class HomeScreenEvents extends StateNotifier<HomeScreenModel> {
           const HomeScreenModel(
             index: 1,
             movies: [],
+            listSearch: [],
           ),
         );
   final Ref ref;
@@ -36,5 +38,10 @@ class HomeScreenEvents extends StateNotifier<HomeScreenModel> {
     }
     state = state.copyWith(movies: [...state.movies, ...listTmp]);
     state = state.copyWith(index: state.index + 1);
+  }
+
+  void getSearchMovie({required String movie}) {
+    final response = state.movies.where((element) => element.title.toLowerCase().contains(movie.toLowerCase().trim()));
+    state = state.copyWith(listSearch: response.toList());
   }
 }

@@ -1,4 +1,6 @@
 {
     "@@locale": "es",
-    "title": "Aplicación de películas"
+    "title": "Aplicación de películas",
+    "heading": "Proximas películas",
+    "search": "Buscar película"
 }

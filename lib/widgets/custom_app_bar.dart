@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/core/routes/router.dart';
 import 'package:movie_app/core/utils/utils.dart';
 import 'package:movie_app/gen/l10n.dart';
+import 'package:movie_app/widgets/search_delegate.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class CustomAppBar extends ConsumerWidget {
@@ -50,7 +51,7 @@ class CustomAppBar extends ConsumerWidget {
               : const SizedBox(),
           const Spacer(),
           IconButton(
-            onPressed: () {},
+            onPressed: () => showSearch(context: context, delegate: MovieSearDelegate(context, ref)),
             icon: Container(
               width: size.width(context, .1),
               height: size.width(context, .1),

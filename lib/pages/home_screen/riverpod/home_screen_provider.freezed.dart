@@ -22,6 +22,7 @@ HomeScreenModel _$HomeScreenModelFromJson(Map<String, dynamic> json) {
 mixin _$HomeScreenModel {
   int get index => throw _privateConstructorUsedError;
   List<Movie> get movies => throw _privateConstructorUsedError;
+  List<Movie> get listSearch => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $HomeScreenModelCopyWith<$Res> {
           HomeScreenModel value, $Res Function(HomeScreenModel) then) =
       _$HomeScreenModelCopyWithImpl<$Res, HomeScreenModel>;
   @useResult
-  $Res call({int index, List<Movie> movies});
+  $Res call({int index, List<Movie> movies, List<Movie> listSearch});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$HomeScreenModelCopyWithImpl<$Res, $Val extends HomeScreenModel>
   $Res call({
     Object? index = null,
     Object? movies = null,
+    Object? listSearch = null,
   }) {
     return _then(_value.copyWith(
       index: null == index
@@ -62,6 +64,10 @@ class _$HomeScreenModelCopyWithImpl<$Res, $Val extends HomeScreenModel>
       movies: null == movies
           ? _value.movies
           : movies // ignore: cast_nullable_to_non_nullable
+              as List<Movie>,
+      listSearch: null == listSearch
+          ? _value.listSearch
+          : listSearch // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
     ) as $Val);
   }
@@ -75,7 +81,7 @@ abstract class _$$HomeScreenModelImplCopyWith<$Res>
       __$$HomeScreenModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int index, List<Movie> movies});
+  $Res call({int index, List<Movie> movies, List<Movie> listSearch});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$HomeScreenModelImplCopyWithImpl<$Res>
   $Res call({
     Object? index = null,
     Object? movies = null,
+    Object? listSearch = null,
   }) {
     return _then(_$HomeScreenModelImpl(
       index: null == index
@@ -101,6 +108,10 @@ class __$$HomeScreenModelImplCopyWithImpl<$Res>
           ? _value._movies
           : movies // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
+      listSearch: null == listSearch
+          ? _value._listSearch
+          : listSearch // ignore: cast_nullable_to_non_nullable
+              as List<Movie>,
     ));
   }
 }
@@ -109,8 +120,11 @@ class __$$HomeScreenModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HomeScreenModelImpl implements _HomeScreenModel {
   const _$HomeScreenModelImpl(
-      {required this.index, required final List<Movie> movies})
-      : _movies = movies;
+      {required this.index,
+      required final List<Movie> movies,
+      required final List<Movie> listSearch})
+      : _movies = movies,
+        _listSearch = listSearch;
 
   factory _$HomeScreenModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$HomeScreenModelImplFromJson(json);
@@ -125,9 +139,17 @@ class _$HomeScreenModelImpl implements _HomeScreenModel {
     return EqualUnmodifiableListView(_movies);
   }
 
+  final List<Movie> _listSearch;
+  @override
+  List<Movie> get listSearch {
+    if (_listSearch is EqualUnmodifiableListView) return _listSearch;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listSearch);
+  }
+
   @override
   String toString() {
-    return 'HomeScreenModel(index: $index, movies: $movies)';
+    return 'HomeScreenModel(index: $index, movies: $movies, listSearch: $listSearch)';
   }
 
   @override
@@ -136,13 +158,18 @@ class _$HomeScreenModelImpl implements _HomeScreenModel {
         (other.runtimeType == runtimeType &&
             other is _$HomeScreenModelImpl &&
             (identical(other.index, index) || other.index == index) &&
-            const DeepCollectionEquality().equals(other._movies, _movies));
+            const DeepCollectionEquality().equals(other._movies, _movies) &&
+            const DeepCollectionEquality()
+                .equals(other._listSearch, _listSearch));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, index, const DeepCollectionEquality().hash(_movies));
+      runtimeType,
+      index,
+      const DeepCollectionEquality().hash(_movies),
+      const DeepCollectionEquality().hash(_listSearch));
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +189,8 @@ class _$HomeScreenModelImpl implements _HomeScreenModel {
 abstract class _HomeScreenModel implements HomeScreenModel {
   const factory _HomeScreenModel(
       {required final int index,
-      required final List<Movie> movies}) = _$HomeScreenModelImpl;
+      required final List<Movie> movies,
+      required final List<Movie> listSearch}) = _$HomeScreenModelImpl;
 
   factory _HomeScreenModel.fromJson(Map<String, dynamic> json) =
       _$HomeScreenModelImpl.fromJson;
@@ -171,6 +199,8 @@ abstract class _HomeScreenModel implements HomeScreenModel {
   int get index;
   @override
   List<Movie> get movies;
+  @override
+  List<Movie> get listSearch;
   @override
   @JsonKey(ignore: true)
   _$$HomeScreenModelImplCopyWith<_$HomeScreenModelImpl> get copyWith =>

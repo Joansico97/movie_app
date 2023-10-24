@@ -59,6 +59,26 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Proximas películas`
+  String get heading {
+    return Intl.message(
+      'Proximas películas',
+      name: 'heading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buscar película`
+  String get search {
+    return Intl.message(
+      'Buscar película',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {

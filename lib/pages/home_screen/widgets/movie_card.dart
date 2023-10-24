@@ -20,47 +20,50 @@ class MovieCard extends ConsumerWidget {
         RoutesNames.details,
         extra: {'movie': movie},
       ),
-      child: ClipRRect(
-        borderRadius: size.borderRadius(context, .02),
-        child: Container(
-          width: size.height(context, .2),
-          margin: size.right(context, .05),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: AppColors.grey,
-            borderRadius: size.borderRadius(context, .02),
-          ),
-          child: Stack(
-            children: [
-              Image.network(
-                'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                fit: BoxFit.cover,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.transparent,
-                      Colors.black.withOpacity(.5),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
+      child: Hero(
+        tag: movie.id,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            width: size.height(context, .2),
+            margin: size.right(context, .05),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.grey,
+              borderRadius: size.borderRadius(context, .02),
+            ),
+            child: Stack(
+              children: [
+                Image.network(
+                  'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                  fit: BoxFit.cover,
                 ),
-              ),
-              Column(
-                children: [
-                  const Spacer(),
-                  Padding(
-                    padding: size.symmetric(context, .02, .05),
-                    child: Text(
-                      movie.title,
-                      style: AppStyles.body1,
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withOpacity(.5),
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                Column(
+                  children: [
+                    const Spacer(),
+                    Padding(
+                      padding: size.symmetric(context, .02, .05),
+                      child: Text(
+                        movie.title,
+                        style: AppStyles.body1,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

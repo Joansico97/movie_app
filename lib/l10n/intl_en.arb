@@ -1,4 +1,6 @@
 {
     "@@locale": "en",
-    "title": "Movie App"
+    "title": "Movie App",
+    "heading": "Upcoming Movies",
+    "search": "Search movie"
 }
